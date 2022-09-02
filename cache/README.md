@@ -15,3 +15,6 @@ public ShallowEtagHeaderFilter shallowEtagHeaderFilter() {
 }
 ```
 - [ ] 3단계 - 캐시 무효화(Cache Busting)
+  - [x] 정적 리소스 파일의 max-age를 최대치(1년)로 설정한다.
+  - [ ] ETag도 적용한다.
+  - [ ] JS, CSS 리소스에 변경사항이 생기면 캐시가 제거되도록 url에 버전을 적용하자.

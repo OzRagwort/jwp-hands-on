@@ -12,19 +12,21 @@ public class CacheBustingWebConfig implements WebMvcConfigurer {
 
     public static final String PREFIX_STATIC_RESOURCES = "/resources";
     public static final Duration ONE_YEAR = Duration.ofDays(365);
-
     private final ResourceVersion version;
 
     @Autowired
+
     public CacheBustingWebConfig(ResourceVersion version) {
         this.version = version;
     }
 
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-        CacheControl cacheControl = CacheControl.maxAge(ONE_YEAR);
+        CacheControl cacheControl = CacheControl.maxAge(ONE_YEAR)
+                .cachePublic();
+        String anyPathByVersion = PREFIX_STATIC_RESOURCES + "/" + version.getVersion() + "/**";
 
-        registry.addResourceHandler(PREFIX_STATIC_RESOURCES + "/" + version.getVersion() + "/**")
+        registry.addResourceHandler(anyPathByVersion)
                 .addResourceLocations("classpath:/static/")
                 .setCacheControl(cacheControl);
     }

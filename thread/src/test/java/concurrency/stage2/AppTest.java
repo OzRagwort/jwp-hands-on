@@ -4,10 +4,14 @@ import org.junit.jupiter.api.Test;
 
 import java.net.http.HttpResponse;
 import java.util.concurrent.atomic.AtomicInteger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class AppTest {
+
+    private static final Logger LOG = LoggerFactory.getLogger(AppTest.class);
 
     private static final AtomicInteger count = new AtomicInteger(0);
 
@@ -37,8 +41,10 @@ class AppTest {
 
         for (final var thread : threads) {
             thread.join();
+            LOG.info(thread.toString());
         }
 
+        LOG.info("count : " + count);
         assertThat(count.intValue()).isEqualTo(2);
     }
 

@@ -13,6 +13,21 @@
 
 ## 실습
 
-- [ ] 0단계 - 스레드 이해하기
+- [x] 0단계 - 스레드 이해하기
 - [ ] 1단계 - 동시성 이슈 확인하기
 - [ ] 2단계 - WAS에 스레드 설정하기
+
+---
+
+corePoolSize : 스레드가 증가된 후 사용되지 않아도 유지될 스레드의 수
+maximumPoolSize : 스레드 풀이 관리할 최대의 스레드 수
+
+- newCachedThreadPool()
+    - 초기 스레드 : 0
+    - corePoolSize : 0
+    - maximumPoolSize : Integer.MAX_VALUE (컴퓨터 성능에 따라 다름)
+
+- newFixedThreadPool(int nThreads)
+    - 초기 스레드 : 0
+    - corePoolSize : nThreads
+    - maximumPoolSize : nThreads

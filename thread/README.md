@@ -61,3 +61,7 @@ maximumPoolSize : 스레드 풀이 관리할 최대의 스레드 수
 - 스프링 부트 2.7.3 의 starter-tomcat 버전은 2.7.3
   - [tomcat 의존성 버전](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-tomcat/2.7.3)
   - tomcat 버전은 9.0.65 버전을 사용
+  - [톰캣 9버전 공식 문서](https://tomcat.apache.org/tomcat-9.0-doc/config/http.html)
+
+- `thread.start()`은 스레드를 시작
+- `thread.join()`은 그 스레드가 끝날때까지 기다림(새로운 start()를 하지못하게 막음)

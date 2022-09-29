@@ -1,8 +1,11 @@
 package nextstep.study.di.stage4.annotations;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -16,6 +19,15 @@ class DIContainer {
     public DIContainer(final Set<Class<?>> classes) {
         this.beans = createBeans(classes);
         this.beans.forEach(this::setFields);
+    }
+
+    public static DIContainer createContainerForPackage(final String rootPackageName) {
+        Set<Class<?>> classes = ClassPathScanner.getAllClassesInPackage(rootPackageName);
+
+        return classes.stream()
+                .filter(aClass -> aClass.isAnnotationPresent(Service.class)
+                        || aClass.isAnnotationPresent(Repository.class))
+                .collect(Collectors.collectingAndThen(Collectors.toSet(), DIContainer::new));
     }
 
     @SuppressWarnings("unchecked")
@@ -50,11 +62,13 @@ class DIContainer {
     }
 
     private void setField(Object bean, Field field) {
+        if (!field.isAnnotationPresent(Inject.class)) {
+            return;
+        }
+
         try {
             field.setAccessible(true);
-            if (field.get(bean) == null) {
-                field.set(bean, getBean(field.getType()));
-            }
+            field.set(bean, getBean(field.getType()));
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }

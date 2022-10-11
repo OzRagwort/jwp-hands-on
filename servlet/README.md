@@ -8,7 +8,7 @@
 
 ## 요구사항
 
-- [ ] **1단계 - 서블릿 학습 테스트**
+- [x] **1단계 - 서블릿 학습 테스트**
 
 - **`SharedCounterServlet`**, **`LocalCounterServlet`** 클래스를 열어보고 어떤 차이점이 있는지 확인한다.
 - **`ServletTest`**를 통과시킨다.

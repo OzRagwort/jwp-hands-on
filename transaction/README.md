@@ -82,3 +82,4 @@
 
 - **`@Transactional`**의 속성 중에 propagation이 있다. DB에 없는 기능을 왜 스프링에서 제공할까?
 - 테스트를 돌려보고 콘솔창에서 예상했던 대로 트랜잭션이 동작하는지 확인해보자.
+- [블로그](https://webcache.googleusercontent.com/search?q=cache:6YsDneUJIQoJ:https://deveric.tistory.com/86&cd=2&hl=ko&ct=clnk&gl=kr)
